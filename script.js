@@ -1,61 +1,110 @@
-const scorePoint = () => {
+function GameBoard() {
+  const rows = 3;
+  const columns = 3;
+  const board = [];
+
+  for (let i = 0; i < rows; i++) {
+    board[i] = [];
+    for (let j = 0; j < columns; j++) {
+      board[i].push(Cell());
+      
+    }
+  }
   
+  console.log(board);
+
+  function Cell() {
+    let value = 0;
+  
+    const addToken = (player) => {
+      value = `${player}`;
+    };
+  
+    const getValue = () => value;
+    console.log(getValue());
+  
+    return {
+      addToken,
+      getValue
+    };
+  }
+  
+  const players = [
+    {
+      name: 'playerOneName',
+      piece: 'X',
+    }, {
+      name: 'playerTwoName',
+      piece: 'O'
+    }
+  ];
+
+  let player = players[0];
+  const getActivePlayer = () => player;
+  const turnText = `It is now ${getActivePlayer().name}'s turn`;
+
+  // const turnText = () => {
+  //   getActivePlayer();
+  //   console.log(player);
+  //   const name = player.name;
+  //   console.log(name);
+ 
+  //   //turnDiv.textContent = `It is now ${getActivePlayer().name}'s turn`;
+  //   turnDiv.classList.add('turn');
+  //   turnCont.append(turnDiv);
+  // };
+  
+
+  const switchPlayerTurn = () => {
+    player = player === players[0] ? players[1] : players[0];
+  };
+
+
+    
+  const className = player === players[0] ? '.one' : '.two';
+
+  const getClassName = () => className;
+  
+  const getBoard = () => board;
+  const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()))
+
+  const cellValues = () => {
+    let value = '';
+    const letters = ['a', 'b', 'c'];
+    letters.forEach(i => {
+      boardWithCellValues.forEach((t, index) => {
+        value = i + index;
+        const board = document.querySelector('.board');
+        const cellButton = document.createElement('button');
+        cellButton.classList.add('cell');
+        cellButton.dataset.column = value;
+        cellButton.textContent = value;
+        cellButton.addEventListener('click', (e) => {
+          const selectedColumns = e.target.dataset.column;
+          //const player = getActivePlayer();
+          cellButton.textContent = getActivePlayer().piece;
+          cellButton.classList.add(getClassName())
+          switchPlayerTurn(); 
+        })
+        board.appendChild(cellButton);
+      })  
+    })
+    return {value, getActivePlayer}
+  };
+  //switchPlayerTurn();
+  cellValues();
+  
+
+  // const buttons = document.querySelectorAll('button');
+  // buttons.addEventListener('click', )
+  
+
+}
+//const game = GameBoard();
+
+function GameController () {
+  const game = GameBoard();
+  //const activeplayer = game.getActivePlayer();
 }
 
-const player = 'player1';
-const chosen1 = [];
-const chosen2 = [];
-
-
-
-const getRandom = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  const number = Math.floor(Math.random() * (max - min) + min);
-  const letter = number % 2 === 0 ? 'X' : 'O';
-  const choice = `${number}: ${letter}`;
-  return number, choice;
-};
-
-//const random = getRandom(0, 10);
-
-const markSquare = (number, choice) => {
-  if (player === 'player1') {
-    console.log(chosen1);
-    chosen1.push(number);
-    console.log(`Player 1 chose ${choice}`);
-  } else {
-    chosen2.push(number);
-    console.log(`Player 2 chose ${choice}`);
-  }
-}
-
-const createDiv = function(random) {
-  console.log(random);
-  const divName = `div${random}`;
-  console.log(divName);
-};
-
-//blocks = ['div1', 'div2', 'div3', ...]
-
-
-const winningRows = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [7, 5, 3]];
-
-
-const playGame = (number, choice) => {
-  getRandom(1, 10);
-  //evenOrOdd(number);
-  markSquare(number, choice);
-  checkWin(chosen1);
-  if (checkWin(chosen1)) {
-    console.log('Player 1 wins');
-  } else if (checkWin(chosen2)) {
-    console.log('Player 2 wins');
-  } else {
-    console.log('No one wins');
-  }
-};
-
-
-
-
+GameController();

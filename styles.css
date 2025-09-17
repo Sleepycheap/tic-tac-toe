@@ -21,7 +21,7 @@
   cursor: pointer;
 }
 
-.one {
+.flipped {
   display: flex;
   justify-content: center;
   align-items: center;

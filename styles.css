@@ -49,3 +49,14 @@
   border: 8px solid black;
   color: black;
 }
+
+.playAgainButton {
+  border: 8px dotted pink;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  margin: 20px;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+}

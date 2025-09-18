@@ -3,15 +3,17 @@ function GameBoard() {
   const columns = 3;
   const board = [];
 
-  for (let i = 0; i < rows; i++) {
-    board[i] = [];
-    for (let j = 0; j < columns; j++) {
-      board[i].push(Cell());
-      
+  const init = () => {
+    console.log('starting game');
+    for (let i = 0; i < rows; i++) {
+      board[i] = [];
+      for (let j = 0; j < columns; j++) {
+        board[i].push(Cell());  
+      }
     }
-  }
+  };
+  init();
   
-  console.log(board);
 
   function Cell() {
     let value = 0;
@@ -21,7 +23,6 @@ function GameBoard() {
     };
   
     const getValue = () => value;
-    console.log(getValue());
   
     return {
       addToken,
@@ -46,6 +47,7 @@ function GameBoard() {
   const turnText = `It is now ${getActivePlayer().name}'s turn`;
 
   const switchPlayerTurn = (cellButton) => {
+    win();
     player = player === players[0] ? players[1] : players[0];
     cellButton.removeListener
   };
@@ -56,37 +58,63 @@ function GameBoard() {
     console.log('This box has already been selected');
   }
 
-  const winningCombos = () => {
-    {combo1: ['a0', 'a1', 'a2']}; {combo2: ['b0', 'b1', 'b2']}, combo3: ['c0', 'c1', 'c2'], combo4: ['a0', 'b0', 'c0'], combo5: ['a1', 'b1', 'c1'], combo6: ['a2', 'b2', 'c2'], combo7: ['a0', 'b1', 'c2'], combo8: ['a2', 'b1', 'c0']};
-  }
+  const winningCombos = [
+     ['a0', 'a1', 'a2'],  ['b0', 'b1', 'b2'], ['c0', 'c1', 'c2'],  ['a0', 'b0', 'c0'],  ['a1', 'b1', 'c1'],  ['a2', 'b2', 'c2'],  ['a0', 'b1', 'c2'], ['a2', 'b1', 'c0']];
+  
 
-  function winCondtion(winningCombos) {
-    if (player.choices === combo1 || player.choices === combo2 || player.choices === combo3 || player.choices === combo4 || player.choices === combo5 || player.choices === combo6 || player.choices === combo7 || player.choices === combo8) {
-      alert(`${player} wins!`);
-      console.log(`${player} wins!`);
+  function compare(a, b) {
+    if (a === b) {
+      return true;
+    } else {
+      return false;
     }
   }
+
+  function reload() {
+     window.location.reload();
+  }
+
+  function playAgain() {
+    console.log('starting new game');
+    const cont = document.querySelector('.container');
+    const playAgainButton = document.createElement('button');
+    playAgainButton.classList.add('playAgainButton');
+    playAgainButton.textContent = 'Play Again!';
+    cont.appendChild(playAgainButton);
+    playAgainButton.addEventListener('click', reload);
+  }
+
+  const win = () => {
+    for (const combo of winningCombos) {
+      if (combo.every(square => player.choices.includes(square))) {
+        alert(`${player.name} wins with ${combo}!`);
+        const target = document.querySelectorAll('button');
+        for (const button of target) {
+          button.removeEventListener('click', handleClick);
+        }
+        playAgain();
+      }
+    }
+    return false;
+  };
+
+
   function handleClick(event) {
     const target = event.target;
     target.textContent = getActivePlayer().piece;
     target.classList.add('flipped');
     const choice = getActivePlayer().choices;
+    const player = getActivePlayer().name;
     choice.push(target.dataset.column)
-    winCondtion()
-    //console.log(`Choice: ${choice}`);
+    console.log(`${player} picked ${choice}`);
     switchPlayerTurn(target);
     target.removeEventListener('click', handleClick);};
     
-  // const className = player === players[0] ? '.one' : '.two';
-
-  // const getClassName = () => className;
   
   const getBoard = () => board;
   const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()))
-  console.log(boardWithCellValues[1]);
 
-
- 
+  
 
   const cellValues = () => {
     let cellValue = '';
@@ -103,22 +131,15 @@ function GameBoard() {
         board.appendChild(cellButton);
       })  
     })
-    return {cellValue, getActivePlayer}
+    return {cellValue, getActivePlayer, init}
   };
-  //switchPlayerTurn();
   cellValues();
-  
-
-  // const buttons = document.querySelectorAll('button');
-  // buttons.addEventListener('click', )
-  
-
 };
-//const game = GameBoard();
+
 
 function GameController () {
   const game = GameBoard();
-  //const activeplayer = game.getActivePlayer();
+  //init();
 }
 
-GameController();
+GameController()

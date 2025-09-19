@@ -32,11 +32,11 @@ function GameBoard() {
   
   const players = [
     {
-      name: 'playerOneName',
+      name: 'Player One Name',
       piece: 'X',
       choices: []
     }, {
-      name: 'playerTwoName',
+      name: 'Player Two Name',
       piece: 'O',
       choices: []
     }
@@ -113,7 +113,7 @@ function GameBoard() {
   
   const getBoard = () => board;
   const boardWithCellValues = board.map((row) => row.map((cell) => cell.getValue()))
-
+  console.log(boardWithCellValues);
   
 
   const cellValues = () => {
@@ -126,7 +126,7 @@ function GameBoard() {
         const cellButton = document.createElement('button');
         cellButton.classList.add('cell');
         cellButton.dataset.column = cellValue;
-        cellButton.textContent = cellValue;
+        //cellButton.textContent = cellValue;
         cellButton.addEventListener('click', handleClick);
         board.appendChild(cellButton);
       })  

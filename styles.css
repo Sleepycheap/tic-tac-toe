@@ -1,3 +1,15 @@
+
+
+.container {
+  align-items: center;
+  justify-items: center;
+  /* padding: 100px; */
+  border: 2px solid black;
+  /* height: 1000px; */
+  margin: 200px;
+  
+}
+
 .board {
   display: grid;
   height: 500px;
@@ -5,9 +17,13 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   border: 1px solid black;
-  gap: 2px;
-  padding: 2px;
+  /* gap: 2px;
+  padding: 2px; */
   background-color: slategray;
+  /* -webkit-box-shadow: 6px 5px 15px 5px #000000; 
+  box-shadow: 6px 5px 15px 5px #000000; */
+  /*transform: translateY(100%);*/
+  /* transform: translateY(40%) translateX(120%); */
 }
 
 .cell {
@@ -19,6 +35,7 @@
   border: 1px solid black;
   background: orchid;
   cursor: pointer;
+  /* background: #D0E4F5 url("https://picsum.photos/200"); */
 }
 
 .flipped {
@@ -45,10 +62,10 @@
   color: white;
 }
 
-.turn {
+/* .turn {
   border: 8px solid black;
   color: black;
-}
+} */
 
 .playAgainButton {
   border: 8px dotted pink;

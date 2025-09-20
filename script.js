@@ -32,11 +32,11 @@ function GameBoard() {
   
   const players = [
     {
-      name: 'playerOneName',
+      name: prompt('Player One Name'),
       piece: 'X',
       choices: []
     }, {
-      name: 'playerTwoName',
+      name: prompt('player two name'),
       piece: 'O',
       choices: []
     }

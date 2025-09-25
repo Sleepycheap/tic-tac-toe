@@ -1,0 +1,17 @@
+{
+  "Drives": [
+    {
+      "Domain": "splashtacular.egnyte.com",
+      "Label": "Preliminary",
+      "DriveLetter": "P:",
+      "UseSSO": true,
+      "ConnectedFolders": [
+        {
+          "CloudPath": "/Shared/Preliminary",
+          "CreateChild": false
+        }
+      ]
+    }
+  ],
+  "CanAddNewDrive": true
+}

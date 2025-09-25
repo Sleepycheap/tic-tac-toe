@@ -3,12 +3,18 @@
 .container {
   align-items: center;
   justify-items: center;
-  /* padding: 100px; */
+  /* padding: 30px; */
   border: 2px solid black;
   /* height: 1000px; */
-  margin: 200px;
-  
+  margin: 60px;
 }
+
+/* .lines {
+  background-color: black;
+  width: 1px;
+  transform: translateX(165px);
+  height: 200px;
+} */
 
 .board {
   display: grid;
@@ -19,21 +25,31 @@
   border: 1px solid black;
   /* gap: 2px;
   padding: 2px; */
-  background-color: slategray;
+  /* background-color: white; */
   /* -webkit-box-shadow: 6px 5px 15px 5px #000000; 
-  box-shadow: 6px 5px 15px 5px #000000; */
+  box-shadow: 6px 5px 15px 5px #000000;
   /*transform: translateY(100%);*/
   /* transform: translateY(40%) translateX(120%); */
 }
 
+.title {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+#text {
+  font-size: 50px;
+  font-family: copperplate
+}
 .cell {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   font-size: 2rem;
-  border: 1px solid black;
-  background: orchid;
+  /* border: 1px solid white; */
+  background: #4C33CC;
   cursor: pointer;
   /* background: #D0E4F5 url("https://picsum.photos/200"); */
 }
@@ -43,11 +59,11 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 2rem;
+  font-size: 8rem;
   border: 1px solid black;
-  background: crimson;
+  background: #776DA6;
   cursor: pointer;
-  color: white;
+  color: #CABDD9;
 }
 
 .two {
@@ -68,7 +84,10 @@
 } */
 
 .playAgainButton {
-  border: 8px dotted pink;
+  position: relative;
+  bottom: 620px;
+  border: 2px solid  black;
+  background: #B7D1DA;
   display: flex;
   gap: 20px;
   padding: 20px;

@@ -143,3 +143,14 @@ function GameController () {
 }
 
 GameController()
+
+const err = 'MongoServerError: E11000 duplicate key error collection: FCS.emails index: sender_1_subject_1 dup key: { sender: "tringhiser@ohiojusticefoundation.org", subject: "[SUPPORT] Sql not connect" }';
+
+const msg = err.split(' ');
+const error = msg[1];
+const errMsg =
+      error === 'E11000'
+        ? 'Duplicate! This email has already been ReDirected to helpdesk!'
+        : err;
+console.log(`errMsg: ${errMsg}`);
+

@@ -1,28 +1,45 @@
+:root {
+  background-color: #dad7cd;
+}
 
+input {
+  padding: 6px;
+  margin: 10px;
+  background-color: white;
+
+}
+
+button.sub{
+  color: black;
+  display: flex;
+  padding: 10px;
+  font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+}
+
+.namesCont{
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  position: relative;
+  left: 185px
+}
 
 .container {
   align-items: center;
   justify-items: center;
-  /* padding: 30px; */
-  border: 2px solid black;
+  padding: 80px;
+  /* border: 2px solid black; */
   /* height: 1000px; */
-  margin: 60px;
+  /* margin: 60px; */
 }
-
-/* .lines {
-  background-color: black;
-  width: 1px;
-  transform: translateX(165px);
-  height: 200px;
-} */
 
 .board {
   display: grid;
-  height: 500px;
-  width: 500px;
+  height: 70vh;
+  width: 40vw;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  border: 1px solid black;
+  /* border: 1px solid black; */
   /* gap: 2px;
   padding: 2px; */
   /* background-color: white; */
@@ -36,11 +53,15 @@
  display: flex;
  justify-content: center;
  align-items: center;
+ /* border: 2px solid black; */
+ padding: 2px;
 }
 
 #text {
   font-size: 50px;
-  font-family: copperplate
+  font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+  font-variant: small-caps; 
+  margin: 20px;
 }
 .cell {
   display: flex;
@@ -49,7 +70,7 @@
   text-align: center;
   font-size: 2rem;
   /* border: 1px solid white; */
-  background: #4C33CC;
+  background: #a3b18a;
   cursor: pointer;
   /* background: #D0E4F5 url("https://picsum.photos/200"); */
 }
@@ -59,11 +80,11 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 8rem;
+  font-size: 10rem;
   border: 1px solid black;
-  background: #776DA6;
+  background: #588157;
   cursor: pointer;
-  color: #CABDD9;
+  color: #344e41;
 }
 
 .two {
@@ -78,21 +99,40 @@
   color: white;
 }
 
-/* .turn {
-  border: 8px solid black;
-  color: black;
-} */
 
 .playAgainButton {
-  position: relative;
-  bottom: 620px;
+  position:absolute;
+  bottom: 790px;
   border: 2px solid  black;
-  background: #B7D1DA;
+  background: #a3b18a;
+  color: #344e41;
+  font-size: medium;
+  font-weight: bolder;
   display: flex;
-  gap: 20px;
-  padding: 20px;
-  margin: 20px;
+  padding: 10px;
+  margin: -30px;
+  height: 4%;
   align-content: center;
   justify-content: center;
   justify-items: center;
+}
+
+.win {
+  border: 2px solid black;
+  position: absolute;
+  bottom: 500px;
+  color: white;
+  font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+  font-style: italic;
+  font-weight: bolder;
+
+  width: 400px;
+  height: 50px;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  display: flex;
+  padding: 10px;
+  background-color: #344e41;
+  margin: -40px;
 }

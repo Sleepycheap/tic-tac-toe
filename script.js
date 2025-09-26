@@ -30,21 +30,32 @@ function GameBoard() {
     };
   }
   
-  const players = [
-    {
-      name: 'playerOneName',
-      piece: 'X',
-      choices: []
-    }, {
-      name: 'playerTwoName',
-      piece: 'O',
-      choices: []
-    }
-  ];
+  
+
+  function createPlayers() {
+    [
+      {
+        name: prompt('Player One Name'),
+        piece: 'X',
+        choices: []
+      }, {
+        name: prompt('Player Two Name'),
+        piece: 'O',
+        choices: []
+      }
+    ];
+
+  }
+    
 
   let player = players[0];
   const getActivePlayer = () => player;
   const turnText = `It is now ${getActivePlayer().name}'s turn`;
+
+  function resetChoices() {
+    players[0].choices.length = 0;
+    players[1].choices.length= 0;
+  }
 
   const switchPlayerTurn = (cellButton) => {
     win();
@@ -81,13 +92,41 @@ function GameBoard() {
     playAgainButton.classList.add('playAgainButton');
     playAgainButton.textContent = 'Play Again!';
     cont.appendChild(playAgainButton);
-    playAgainButton.addEventListener('click', reload);
+    playAgainButton.addEventListener('click', clearBoard);
   }
+
+  // function resetButton() {
+  // const button = document.querySelector('button.reset');
+  // button.addEventListener('click', clearBoard);
+  // }
+
+  //resetButton();  
+
+  function clearBoard() {
+  const cell = document.querySelectorAll('button.cell');
+  for (const i of cell) {
+    i.classList.remove('flipped');
+    i.textContent = '';
+    i.addEventListener('click', handleClick);
+  }
+  resetChoices();
+  console.log('cleared');
+  const winDiv = document.querySelector('div.win');
+  const button = document.querySelector('.playAgainButton');
+  const cont = document.querySelector('.container');
+  cont.removeChild(button);
+  cont.removeChild(winDiv);
+  players();
+  };
 
   const win = () => {
     for (const combo of winningCombos) {
       if (combo.every(square => player.choices.includes(square))) {
-        alert(`${player.name} wins with ${combo}!`);
+        const winDiv = document.createElement('div');
+        const cont = document.querySelector('.container');
+        winDiv.classList.add('win');
+        winDiv.textContent = `${player.name} wins!`;
+        cont.appendChild(winDiv);
         const target = document.querySelectorAll('button');
         for (const button of target) {
           button.removeEventListener('click', handleClick);
@@ -137,20 +176,11 @@ function GameBoard() {
 };
 
 
+
+
 function GameController () {
   const game = GameBoard();
-  //init();
+  players();
 }
 
 GameController()
-
-const err = 'MongoServerError: E11000 duplicate key error collection: FCS.emails index: sender_1_subject_1 dup key: { sender: "tringhiser@ohiojusticefoundation.org", subject: "[SUPPORT] Sql not connect" }';
-
-const msg = err.split(' ');
-const error = msg[1];
-const errMsg =
-      error === 'E11000'
-        ? 'Duplicate! This email has already been ReDirected to helpdesk!'
-        : err;
-console.log(`errMsg: ${errMsg}`);
-

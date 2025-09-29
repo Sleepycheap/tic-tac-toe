@@ -28,9 +28,6 @@ button.sub{
   align-items: center;
   justify-items: center;
   padding: 80px;
-  /* border: 2px solid black; */
-  /* height: 1000px; */
-  /* margin: 60px; */
 }
 
 .board {
@@ -39,21 +36,12 @@ button.sub{
   width: 40vw;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  /* border: 1px solid black; */
-  /* gap: 2px;
-  padding: 2px; */
-  /* background-color: white; */
-  /* -webkit-box-shadow: 6px 5px 15px 5px #000000; 
-  box-shadow: 6px 5px 15px 5px #000000;
-  /*transform: translateY(100%);*/
-  /* transform: translateY(40%) translateX(120%); */
 }
 
 .title {
  display: flex;
  justify-content: center;
  align-items: center;
- /* border: 2px solid black; */
  padding: 2px;
 }
 
@@ -69,10 +57,8 @@ button.sub{
   align-items: center;
   text-align: center;
   font-size: 2rem;
-  /* border: 1px solid white; */
   background: #a3b18a;
   cursor: pointer;
-  /* background: #D0E4F5 url("https://picsum.photos/200"); */
 }
 
 .flipped {
@@ -102,7 +88,7 @@ button.sub{
 
 .playAgainButton {
   position:absolute;
-  bottom: 790px;
+  bottom: 810px;
   border: 2px solid  black;
   background: #a3b18a;
   color: #344e41;
@@ -112,6 +98,7 @@ button.sub{
   padding: 10px;
   margin: -30px;
   height: 4%;
+  width: 10%;
   align-content: center;
   justify-content: center;
   justify-items: center;
@@ -135,4 +122,29 @@ button.sub{
   padding: 10px;
   background-color: #344e41;
   margin: -40px;
+}
+
+
+.p1 {
+  position: absolute;
+  left: 100px;
+}
+
+.p2 {
+  position: absolute;
+  right: 100px;
+}
+
+
+.start {
+  display: flex;
+  border: black solid 2px;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 6%;
+  margin: auto;
+  text-align: center;
+  background-color: #a3b18a;
+  color: #344e41;
 }

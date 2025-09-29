@@ -29,24 +29,60 @@ function GameBoard() {
       getValue
     };
   }
-  
-  
 
-  function createPlayers() {
-    [
-      {
-        name: prompt('Player One Name'),
-        piece: 'X',
-        choices: []
-      }, {
-        name: prompt('Player Two Name'),
-        piece: 'O',
-        choices: []
-      }
-    ];
-
+  function getP1Name(form) {
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const p1Name = object.playerName;
+    populateP1Name(p1Name);
+    const blank = document.querySelector('.p1');
+    blank.style.display = 'none';
   }
-    
+
+  function getP2Name(form) {
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const p2Name = object.playerName;
+    populateP2Name(p2Name);
+    const blank = document.querySelector('.p2');
+    blank.style.display = 'none';
+  }
+
+  document.getElementById('playerOneName').addEventListener('submit', (e) => {
+    e.preventDefault();
+    getP1Name(e.target);
+  })
+
+  document.getElementById('playerTwoName').addEventListener('submit', (e) => {
+    e.preventDefault();
+    getP2Name(e.target);
+  })
+  
+  
+  const players = [
+    {
+      name: '',
+      piece: 'X',
+      choices: []
+    }, {
+      name: '',
+      piece: 'O',
+      choices: []
+    }
+  ];
+  
+  function populateP1Name(p1Name) {
+    const player1 = players[0];
+    player1.name = player1.name + p1Name;
+    console.log(player1.name);
+  }
+
+  function populateP2Name(p2Name) {
+    const player2 = players[1];
+    player2.name = player2.name + p2Name;
+    console.log(player2.name);
+  }
+
 
   let player = players[0];
   const getActivePlayer = () => player;
@@ -85,6 +121,18 @@ function GameBoard() {
      window.location.reload();
   }
 
+  function startGame() {
+    if (players[0].name === '' && players[1].name === '') {
+      players[0].name = players[0].name + 'Player One Name';
+      players[1].name = players[1].name + 'Player Two Name';
+    } else if (players[1].name === '') {
+      players[1].name = players[1].name + 'Player Two Name';
+    } else if (players[0].name === '' && players[1].name !== '') {
+      players[0].name = players[0].name + 'Player One Name';
+    }
+    cellValues();
+  }
+
   function playAgain() {
     console.log('starting new game');
     const cont = document.querySelector('.container');
@@ -95,12 +143,10 @@ function GameBoard() {
     playAgainButton.addEventListener('click', clearBoard);
   }
 
-  // function resetButton() {
-  // const button = document.querySelector('button.reset');
-  // button.addEventListener('click', clearBoard);
-  // }
-
-  //resetButton();  
+  document.querySelector('.start').addEventListener('click', (e) => {
+    e.preventDefault();
+    startGame();
+  })
 
   function clearBoard() {
   const cell = document.querySelectorAll('button.cell');
@@ -114,9 +160,10 @@ function GameBoard() {
   const winDiv = document.querySelector('div.win');
   const button = document.querySelector('.playAgainButton');
   const cont = document.querySelector('.container');
+  const board = document.querySelector('.board');
   cont.removeChild(button);
   cont.removeChild(winDiv);
-  players();
+  reload();
   };
 
   const win = () => {
@@ -172,7 +219,6 @@ function GameBoard() {
     })
     return {cellValue, getActivePlayer, init}
   };
-  cellValues();
 };
 
 
@@ -180,7 +226,6 @@ function GameBoard() {
 
 function GameController () {
   const game = GameBoard();
-  players();
 }
 
 GameController()
